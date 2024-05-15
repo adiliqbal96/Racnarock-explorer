@@ -1,4 +1,4 @@
-﻿  <!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -27,17 +27,22 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Tours">Tours</a>
-                            </li>
-                    
+                        </li>
                     </ul>
-                </div>
-                <div class="btn-group pull-right"> 
-        
-                        <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav ml-auto">
+                        @if (Context.Session.GetString("LoggedInUser") != null)
+                        {
                             <li class="nav-item">
-                                <a class="nav-link text dark" asp-area="" asp-page="/Login">Login</a>
-
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Logout</a>
                             </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
+                            </li>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -53,7 +58,7 @@
             &copy; 2024 - Ragnarock Explorer - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
     </footer>
-    
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

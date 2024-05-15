@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 
 namespace Racnarock_explorer.Pages
 {
@@ -12,9 +14,17 @@ namespace Racnarock_explorer.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            // Check if the user is logged in by checking the session
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString("LoggedInUser")))
+            {
+                // Redirect to the login page if not logged in
+                return RedirectToPage("/Login");
+            }
 
+            // User is logged in, proceed with page load
+            return Page();
         }
     }
 }
