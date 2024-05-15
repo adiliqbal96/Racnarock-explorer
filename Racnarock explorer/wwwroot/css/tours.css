@@ -1,0 +1,49 @@
+﻿body {
+    font-family: 'Arial', sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4; /* Light gray background */
+    color: #333; /* Dark gray text */
+}
+
+.header {
+    background: #ff8c00; /* Orange background for the header */
+    color: white; /* White text in the header for contrast */
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.tour-item {
+    background: white; /* White background for each tour item */
+    margin: 10px 0;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for 3D effect */
+}
+
+    .tour-item h3 {
+        color: #ff8c00; /* Orange text for headers to match the buttons */
+    }
+
+    .tour-item p {
+        font-size: 16px;
+        color: #333; /* Maintaining dark gray for body text for readability */
+    }
+
+button {
+    background: #ff8c00; /* Dark orange background, matching the logo */
+    color: white; /* White text for contrast */
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+}
+
+    button:hover {
+        background: #e67e00; /* Slightly darker shade of orange for hover */
+    }
+
+audio {
+    width: 100%; /* Full width audio control */
+    margin-top: 10px; /* Margin above the audio player */
+}
