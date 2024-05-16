@@ -1,18 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Racnarock_explorer.Models
+﻿namespace Racnarock_explorer.Models
 {
     public class Tour
     {
         public int Id { get; set; }
-
-        [Required(ErrorMessage = "Title is required")]
-        public string Title { get; set; }
-
-        [Required(ErrorMessage = "Description is required")]
-        public string Description { get; set; }
-
-        [Required(ErrorMessage = "AudioUrl is required")]
-        public string AudioUrl { get; set; }
+        public string Title { get; set; } = string.Empty; // Default to empty string to avoid null
+        public string Description { get; set; } = string.Empty; // Default to empty string to avoid null
+        public string AudioUrl { get; set; } = string.Empty; // Default to empty string to avoid null
     }
 }

@@ -15,7 +15,7 @@ namespace Racnarock_explorer.Services
             _logger = logger;
         }
 
-        public async Task<string> UploadFileAsync(IFormFile file, string uploadFolder)
+        public async Task<string?> UploadFileAsync(IFormFile file, string uploadFolder)
         {
             if (file == null || file.Length == 0)
             {
@@ -27,7 +27,7 @@ namespace Racnarock_explorer.Services
 
             try
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(filePath));
+                Directory.CreateDirectory(Path.GetDirectoryName(filePath) ?? string.Empty);
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await file.CopyToAsync(stream);

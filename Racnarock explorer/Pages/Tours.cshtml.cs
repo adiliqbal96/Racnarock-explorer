@@ -5,6 +5,7 @@ using Racnarock_explorer.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace Racnarock_explorer.Pages
 {
@@ -14,18 +15,37 @@ namespace Racnarock_explorer.Pages
 
         public IActionResult OnGet()
         {
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("LoggedInUser")))
-            {
-                return RedirectToPage("/Login");
-            }
-
             Tours = LoadToursFromFile();
             return Page();
         }
 
+        public IActionResult OnPostDelete(int id)
+        {
+            DeleteTourById(id);
+            TempData["SuccessMessage"] = "Tour deleted successfully.";
+            return RedirectToPage();
+        }
+
+        private void DeleteTourById(int id)
+        {
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "tours.json");
+            if (System.IO.File.Exists(filePath))
+            {
+                var json = System.IO.File.ReadAllText(filePath);
+                var tours = JsonSerializer.Deserialize<List<Tour>>(json);
+                var tourToDelete = tours?.Find(t => t.Id == id);
+                if (tourToDelete != null)
+                {
+                    tours.Remove(tourToDelete);
+                    var updatedJson = JsonSerializer.Serialize(tours, new JsonSerializerOptions { WriteIndented = true });
+                    System.IO.File.WriteAllText(filePath, updatedJson);
+                }
+            }
+        }
+
         private List<Tour> LoadToursFromFile()
         {
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "tours.json");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "tours.json");
             var tours = new List<Tour>();
 
             if (System.IO.File.Exists(filePath))

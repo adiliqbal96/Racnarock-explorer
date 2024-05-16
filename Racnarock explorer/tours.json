@@ -1,20 +1,14 @@
 [
   {
-    "Id": 1,
-    "Title": "Rock Historie",
-    "Description": "En rejse gennem rockmusikkens historie fra 50'erne til i dag.",
-    "AudioUrl": "/Music/rock_historie.mp3"
-  },
-  {
     "Id": 2,
     "Title": "Punk Revolution",
-    "Description": "Oplev punkens vilde dage og dens indflydelse på musik og kultur.",
+    "Description": "Oplev punkens vilde dage og dens indflydelse p\u00E5 musik og kultur.",
     "AudioUrl": "/Music/Punk_evoulution.mp3"
   },
   {
     "Id": 3,
     "Title": "Heavy Metal Thunder",
-    "Description": "Udforsk heavy metal's opstigning og de legendariske bands, der formede genren.",
+    "Description": "Udforsk heavy metal\u0027s opstigning og de legendariske bands, der formede genren.",
     "AudioUrl": "/Music/Heavy_metal.mp3"
   },
   {

@@ -1,11 +1,15 @@
 ﻿@page
 @model Racnarock_explorer.Pages.ToursModel
+@{
+    ViewData["Title"] = "Tilgængelige Rundvisninger";
+}
 
 <link rel="stylesheet" href="~/css/tours.css" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-<header class="header">
+<div class="header">
     <h1>Tilgængelige Rundvisninger</h1>
-</header>
+</div>
 
 @if (TempData["SuccessMessage"] != null)
 {
@@ -17,7 +21,7 @@
 <div class="container">
     @if (HttpContext.Session.GetString("LoggedInUser") == "admin")
     {
-        <div class="mb-3">
+        <div class="add-tour-button">
             <a class="btn btn-warning" asp-page="/AddTour">Add New Tour</a>
         </div>
     }
@@ -34,6 +38,19 @@
                 <source src="@tour.AudioUrl" type="audio/mpeg">
                 Your browser does not support the audio element.
             </audio>
+            @if (HttpContext.Session.GetString("LoggedInUser") == "admin")
+            {
+                <div class="tour-actions">
+                    <a asp-page="/EditTour" asp-route-id="@tour.Id" class="btn btn-secondary tour-button">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <form method="post" asp-page-handler="Delete" asp-route-id="@tour.Id" class="d-inline">
+                        <button type="submit" class="btn btn-danger tour-button">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </form>
+                </div>
+            }
         </div>
     }
 </div>

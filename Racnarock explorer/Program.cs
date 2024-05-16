@@ -1,10 +1,13 @@
-using Racnarock_explorer.Services;  // Make sure this line is correct
+using Racnarock_explorer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddSingleton<FileUploadService>(); // Register the FileUploadService
+
+// Register IHttpContextAccessor
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 // Add services required for using session
 builder.Services.AddDistributedMemoryCache();

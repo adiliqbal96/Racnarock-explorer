@@ -1,102 +1,74 @@
-html {
-    font-size: 14px;
+.navbar .navbar-brand {
+    display: flex;
+    align-items: center;
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
+    .navbar .navbar-brand .logo {
+        max-height: 40px;
+        margin-right: 10px;
     }
+
+.hero {
+    text-align: center;
+    padding: 60px 0;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
+    .hero img {
+        max-width: 150px;
+        height: auto;
+        margin-bottom: 20px;
+    }
 
-html {
-    position: relative;
-    min-height: 100%;
-}
+    .hero h1 {
+        font-size: 3em;
+        margin-bottom: 20px;
+    }
 
-body {
-    margin-bottom: 60px;
-    font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
+    .hero p {
+        font-size: 1.2em;
+        margin-bottom: 40px;
+    }
 
-.navbar {
-    background-color: #EF6407;
-    padding: 10px 20px;
-}
-
-    .navbar a {
+    .hero .btn-orange {
+        font-size: 1.2em;
+        padding: 10px 20px;
+        background-color: #EF6407;
         color: white;
-        text-decoration: none;
-        padding: 0 10px;
+        border: none;
+        margin-top: 20px;
     }
 
-        .navbar a:hover {
-            text-decoration: underline;
+        .hero .btn-orange:hover {
+            background-color: darkorange;
+            color: white;
         }
 
-.container {
-    margin-top: 50px;
+.info-section-container {
+    display: flex;
+    justify-content: space-between; /* Ensure boxes are side by side */
+    width: 100%;
+    margin-top: 20px;
 }
 
-.card {
-    max-width: 400px;
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    margin: auto; /* Center the card horizontally */
-}
-
-.card-header {
-    border-radius: 10px 10px 0 0;
-    background-color: #EF6407;
-    color: white;
+.info-section {
+    background: #fff;
     padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    border: 2px solid #EF6407;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    max-width: 30%; /* Ensure all boxes have the same width */
 }
 
-.card-body {
-    padding: 20px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-    display: block;
-}
-
-.form-control {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 100%;
-}
-
-.btn {
-    background-color: #EF6407;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s ease;
-}
-
-    .btn:hover {
-        background-color: #e06700;
+    .info-section h2 {
+        color: #EF6407;
     }
 
-.shadow {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+footer {
+    margin-top: 40px; /* Adjust the footer's position */
 }

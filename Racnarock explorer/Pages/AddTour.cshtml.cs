@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Racnarock_explorer.Models;
-using Racnarock_explorer.Services;  // Make sure this line is correct
+using Racnarock_explorer.Services;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -27,38 +27,49 @@ namespace Racnarock_explorer.Pages
         [BindProperty]
         public IFormFile AudioFile { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
+            if (HttpContext.Session.GetString("LoggedInUser") != "admin")
+            {
+                return RedirectToPage("/Login");
+            }
+            return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (AudioFile == null || AudioFile.Length == 0)
+            if (AudioFile == null)
             {
                 ModelState.AddModelError("AudioFile", "Please select a file to upload.");
                 return Page();
             }
 
-            try
+            // Upload the file and set the AudioUrl
+            var filePath = await _fileUploadService.UploadFileAsync(AudioFile, Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Music"));
+            if (filePath == null)
             {
-                Tour.AudioUrl = await _fileUploadService.UploadFileAsync(AudioFile, Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Music"));
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Error uploading file: {ex.Message}");
                 ModelState.AddModelError("", "Error uploading file.");
                 return Page();
             }
 
-            if (!TryValidateModel(Tour, nameof(Tour)))
+            Tour.AudioUrl = filePath; // Set the AudioUrl here
+
+            // Custom validation for AudioUrl
+            if (string.IsNullOrEmpty(Tour.AudioUrl))
+            {
+                ModelState.AddModelError("Tour.AudioUrl", "AudioUrl is required.");
+            }
+
+            // Validate the model again after setting AudioUrl
+            if (!ModelState.IsValid)
             {
                 _logger.LogError("Model state is invalid after setting AudioUrl");
-                foreach (var key in ModelState.Keys)
+                foreach (var modelStateKey in ViewData.ModelState.Keys)
                 {
-                    var state = ModelState[key];
-                    foreach (var error in state.Errors)
+                    var modelStateVal = ViewData.ModelState[modelStateKey];
+                    foreach (var error in modelStateVal.Errors)
                     {
-                        _logger.LogError($"Error in {key}: {error.ErrorMessage}");
+                        _logger.LogError($"Error in {modelStateKey}: {error.ErrorMessage}");
                     }
                 }
                 return Page();
@@ -71,7 +82,7 @@ namespace Racnarock_explorer.Pages
 
         private void SaveTour(Tour tour)
         {
-            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "tours.json");
+            var filePath = Path.Combine(Directory.GetCurrentDirectory(), "tours.json");
             List<Tour> tours = new List<Tour>();
             if (System.IO.File.Exists(filePath))
             {

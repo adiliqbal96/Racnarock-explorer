@@ -4,80 +4,26 @@
     ViewData["Title"] = "Home Page";
 }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>@ViewData["Title"] - Ragnarock Explorer</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .hero {
-            background-color: #f8f9fa;
-            padding: 60px 0;
-            text-align: center;
-        }
-
-            .hero img {
-                max-width: 150px; /* Adjust the max width as needed */
-                height: auto;
-                margin-bottom: 20px;
-            }
-
-            .hero h1 {
-                font-size: 3em;
-                margin-bottom: 20px;
-            }
-
-            .hero p {
-                font-size: 1.2em;
-                margin-bottom: 40px;
-            }
-
-            .hero .btn-orange {
-                font-size: 1.2em;
-                padding: 10px 20px;
-                background-color: orange;
-                color: white;
-                border: none;
-            }
-
-                .hero .btn-orange:hover {
-                    background-color: darkorange;
-                    color: white;
-                }
-    </style>
-</head>
-<body>
-    <div class="hero">
-        <div class="container">
-            <img src="~/images/logo.png" alt="Ragnarock Explorer Logo" />
-            <h1>Ragnarock Explorer</h1>
-            <p>En mere brugervenlig rundvisning til rockmuseet.</p>
-            <a href="/Tours" class="btn btn-orange">Se rundvisningen</a>
-        </div>
+<div class="hero">
+    <div class="container">
+        <img src="~/images/logo.png" alt="Ragnarock Explorer Logo" />
+        <h1>Ragnarock Explorer</h1>
+        <p>En mere brugervenlig rundvisning til rockmuseet.</p>
+        <a href="/Tours" class="btn btn-orange">Se rundvisningen</a>
     </div>
+</div>
 
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Enkel Oversigt</h2>
-                <p>Hold styr på hvor du er, og lyt på vejen.</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Øget Effektivitet</h2>
-                <p>Automatiser opfølgning og administration af rockmusik.</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Tilgængelig Overalt</h2>
-                <p>Benyt systemet fra enhver enhed, når som helst og hvor som helst.</p>
-            </div>
-        </div>
+<div class="container info-section-container">
+    <div class="info-section">
+        <h2>Enkel Oversigt</h2>
+        <p>Hold styr på hvor du er, og lyt på vejen.</p>
     </div>
-
-</body>
-</html>
+    <div class="info-section">
+        <h2>Øget Effektivitet</h2>
+        <p>Automatiser opfølgning og administration af rockmusik.</p>
+    </div>
+    <div class="info-section">
+        <h2>Tilgængelig Overalt</h2>
+        <p>Benyt systemet fra enhver enhed, når som helst og hvor som helst.</p>
+    </div>
+</div>

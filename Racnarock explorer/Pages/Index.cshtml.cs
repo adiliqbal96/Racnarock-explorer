@@ -14,17 +14,9 @@ namespace Racnarock_explorer.Pages
             _logger = logger;
         }
 
-        public IActionResult OnGet()
+        public void OnGet()
         {
-            // Check if the user is logged in by checking the session
-            if (string.IsNullOrEmpty(HttpContext.Session.GetString("LoggedInUser")))
-            {
-                // Redirect to the login page if not logged in
-                return RedirectToPage("/Login");
-            }
-
-            // User is logged in, proceed with page load
-            return Page();
+            // No need to check for login here
         }
     }
 }
