@@ -6,7 +6,7 @@
 }
 
 .header {
-    background: #ff8c00; /* Orange background for the header */
+    background: #EF6407; /* Orange background for the header */
     color: white; /* White text in the header for contrast */
     padding: 10px 20px;
     text-align: center;
@@ -17,10 +17,11 @@
     margin: 10px 0;
     padding: 20px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Subtle shadow for 3D effect */
+    border-radius: 8px; /* Rounded corners */
 }
 
     .tour-item h3 {
-        color: #ff8c00; /* Orange text for headers to match the buttons */
+        color: #EF6407; /* Orange text for headers to match the buttons */
     }
 
     .tour-item p {
@@ -29,7 +30,7 @@
     }
 
 button {
-    background: #ff8c00; /* Dark orange background, matching the logo */
+    background: #EF6407; /* Dark orange background */
     color: white; /* White text for contrast */
     border: none;
     padding: 10px 20px;
@@ -46,4 +47,58 @@ button {
 audio {
     width: 100%; /* Full width audio control */
     margin-top: 10px; /* Margin above the audio player */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+    .form-group label {
+        font-weight: bold;
+    }
+
+    .form-group input, .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+        .form-group input[type="file"] {
+            padding: 0;
+        }
+
+.btn {
+    background: #EF6407;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+    .btn:hover {
+        background: #e67e00;
+    }
+
+.card {
+    background: white;
+    margin: 10px 0;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 8px;
+}
+
+.card-header {
+    background: #EF6407;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+
+.card-body {
+    padding: 20px;
 }

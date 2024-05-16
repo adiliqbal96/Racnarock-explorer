@@ -1,19 +1,18 @@
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
+using Racnarock_explorer.Services;  // Make sure this line is correct
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<FileUploadService>(); // Register the FileUploadService
 
-// Adds and configures session services
-builder.Services.AddDistributedMemoryCache(); // This is necessary for storing session state in-memory
+// Add services required for using session
+builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Sets session timeout
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
     options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true; // Makes the session cookie essential
+    options.Cookie.IsEssential = true;
 });
 
 var app = builder.Build();
@@ -32,7 +31,7 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.UseSession(); // Make sure this is placed after UseRouting and before UseEndpoints
+app.UseSession();
 
 app.MapRazorPages();
 

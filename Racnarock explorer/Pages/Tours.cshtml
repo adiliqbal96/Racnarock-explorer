@@ -1,15 +1,27 @@
 ﻿@page
 @model Racnarock_explorer.Pages.ToursModel
-@{
 
-}
 <link rel="stylesheet" href="~/css/tours.css" asp-append-version="true" />
 
 <header class="header">
     <h1>Tilgængelige Rundvisninger</h1>
 </header>
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
 <div class="container">
+    @if (HttpContext.Session.GetString("LoggedInUser") == "admin")
+    {
+        <div class="mb-3">
+            <a class="btn btn-warning" asp-page="/AddTour">Add New Tour</a>
+        </div>
+    }
+
     @foreach (var tour in Model.Tours)
     {
         <div class="tour-item">
@@ -17,9 +29,7 @@
                 <h3>@tour.Title</h3>
                 <p>@tour.Description</p>
             </div>
-            <!-- Button that triggers JavaScript function to play or pause the associated audio -->
             <button id="btn-@tour.Id" onclick="toggleAudio('@tour.Id')">Afspil</button>
-            <!-- Audio player that is initially hidden -->
             <audio id="audio-@tour.Id" controls hidden>
                 <source src="@tour.AudioUrl" type="audio/mpeg">
                 Your browser does not support the audio element.
@@ -33,17 +43,14 @@
         var audioPlayer = document.getElementById('audio-' + tourId);
         var playButton = document.getElementById('btn-' + tourId);
 
-        // Toggle visibility and playback
         if (audioPlayer.hidden) {
-            // Show the audio player and start playing
             audioPlayer.hidden = false;
             audioPlayer.play();
-            playButton.textContent = 'Stop Afspilning';  // Update button text
+            playButton.textContent = 'Stop Afspilning';
         } else {
-            // Pause the audio player and hide it
             audioPlayer.pause();
             audioPlayer.hidden = true;
-            playButton.textContent = 'Afspil';  // Reset button text
+            playButton.textContent = 'Afspil';
         }
     }
 </script>

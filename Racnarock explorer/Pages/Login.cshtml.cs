@@ -20,7 +20,7 @@ namespace Racnarock_explorer.Pages
             if (Username == "admin" && Password == "password") // Example credentials
             {
                 HttpContext.Session.SetString("LoggedInUser", Username); // Set session
-                return RedirectToPage("/Index");
+                return RedirectToPage("/Tours");
             }
 
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
