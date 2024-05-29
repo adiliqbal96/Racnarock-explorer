@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using Racnarock_explorer.Models;
 using Racnarock_explorer.Services;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -44,7 +45,6 @@ namespace Racnarock_explorer.Pages
                 return Page();
             }
 
-            // Upload the file and set the AudioUrl
             var filePath = await _fileUploadService.UploadFileAsync(AudioFile, Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Music"));
             if (filePath == null)
             {
@@ -52,26 +52,10 @@ namespace Racnarock_explorer.Pages
                 return Page();
             }
 
-            Tour.AudioUrl = filePath; // Set the AudioUrl here
+            Tour.AudioUrl = filePath;
 
-            // Custom validation for AudioUrl
-            if (string.IsNullOrEmpty(Tour.AudioUrl))
-            {
-                ModelState.AddModelError("Tour.AudioUrl", "AudioUrl is required.");
-            }
-
-            // Validate the model again after setting AudioUrl
             if (!ModelState.IsValid)
             {
-                _logger.LogError("Model state is invalid after setting AudioUrl");
-                foreach (var modelStateKey in ViewData.ModelState.Keys)
-                {
-                    var modelStateVal = ViewData.ModelState[modelStateKey];
-                    foreach (var error in modelStateVal.Errors)
-                    {
-                        _logger.LogError($"Error in {modelStateKey}: {error.ErrorMessage}");
-                    }
-                }
                 return Page();
             }
 

@@ -16,7 +16,7 @@ namespace Racnarock_explorer.Pages
 
         public void OnGet()
         {
-            // No need to check for login here
+            
         }
     }
 }
